@@ -638,7 +638,7 @@ async def get_seo_settings():
     cache_data = settings.copy()
     if isinstance(cache_data.get('updated_at'), datetime):
         cache_data['updated_at'] = cache_data['updated_at'].isoformat()
-    await redis_client.setex("seo:settings", 600, json.dumps(cache_data))
+    await safe_redis_setex("seo:settings", 600, json.dumps(cache_data))
     
     return settings
 
