@@ -124,6 +124,10 @@ export default function AdminDashboard() {
             <UsersManager />
           </TabsContent>
 
+          <TabsContent value="blog">
+            <BlogManager />
+          </TabsContent>
+
           <TabsContent value="testimonials">
             <TestimonialsManager />
           </TabsContent>
