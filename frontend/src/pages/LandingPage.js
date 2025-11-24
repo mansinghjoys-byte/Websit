@@ -241,8 +241,15 @@ export default function LandingPage() {
       <section className="py-20 bg-gray-50" data-testid="as-seen-on-section">
         <div className="container-custom">
           <div className="relative flex flex-col items-center">
-            {/* Logos Container - Above the banner */}
-            <div className="relative z-10 flex items-center justify-center mb-[-60px]">
+            {/* Black Banner */}
+            <div className="relative z-5 bg-black text-white px-32 py-10 rounded-3xl shadow-2xl">
+              <h3 className="text-5xl font-bold uppercase tracking-[0.5em] leading-none whitespace-nowrap" style={{ fontFamily: 'Arial Black, sans-serif' }}>
+                AS SEEN ON
+              </h3>
+            </div>
+            
+            {/* Logos Container - Below the banner, overlapping it */}
+            <div className="relative z-10 flex items-center justify-center mt-[-60px]">
               <div className="flex items-center justify-center">
                 {[
                   { 
@@ -309,13 +316,6 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
-            </div>
-            
-            {/* Black Banner - Below the logos */}
-            <div className="relative z-5 bg-black text-white px-32 py-10 rounded-3xl shadow-2xl">
-              <h3 className="text-5xl font-bold uppercase tracking-[0.5em] leading-none whitespace-nowrap" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                AS SEEN ON
-              </h3>
             </div>
           </div>
         </div>
