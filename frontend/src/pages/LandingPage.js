@@ -241,15 +241,8 @@ export default function LandingPage() {
       <section className="py-20 bg-gray-50" data-testid="as-seen-on-section">
         <div className="container-custom">
           <div className="relative flex flex-col items-center">
-            {/* Black Banner */}
-            <div className="relative z-10 bg-black text-white px-32 py-10 rounded-3xl shadow-2xl">
-              <h3 className="text-5xl font-bold uppercase tracking-[0.5em] leading-none whitespace-nowrap" style={{ fontFamily: 'Arial Black, sans-serif' }}>
-                AS SEEN ON
-              </h3>
-            </div>
-            
-            {/* Logos Container - Overlapping the banner */}
-            <div className="relative -mt-16 flex items-center justify-center" style={{ marginTop: '-60px' }}>
+            {/* Logos Container - Above the banner */}
+            <div className="relative z-10 flex items-center justify-center mb-[-60px]">
               <div className="flex items-center justify-center">
                 {[
                   { 
@@ -297,7 +290,7 @@ export default function LandingPage() {
                       borderRadius: '50%',
                       boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 10px 25px rgba(0, 0, 0, 0.15)',
                       marginLeft: idx === 0 ? '0' : '-20px',
-                      zIndex: 7 - idx,
+                      zIndex: 20 + idx,
                     }}
                   >
                     <img 
@@ -316,6 +309,13 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
+            </div>
+            
+            {/* Black Banner - Below the logos */}
+            <div className="relative z-5 bg-black text-white px-32 py-10 rounded-3xl shadow-2xl">
+              <h3 className="text-5xl font-bold uppercase tracking-[0.5em] leading-none whitespace-nowrap" style={{ fontFamily: 'Arial Black, sans-serif' }}>
+                AS SEEN ON
+              </h3>
             </div>
           </div>
         </div>
