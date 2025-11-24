@@ -727,7 +727,7 @@ export default function LandingPage() {
                   </Card>
 
                   <Button
-                    onClick={() => handleGetStarted(mainProduct.id)}
+                    onClick={handleGetStarted}
                     className="btn-primary w-full"
                     size="lg"
                     data-testid="claim-discount-btn"
