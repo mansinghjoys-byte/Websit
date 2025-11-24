@@ -58,45 +58,60 @@ async def init_data():
     await db.testimonials.insert_many(testimonials)
     print(f"✓ Added {len(testimonials)} testimonials")
     
-    # Add initial FAQs
-    faqs_count = await db.faqs.count_documents({})
-    if faqs_count == 0:
-        faqs = [
-            {
-                "id": "faq1",
-                "question": "Is PEMF safe?",
-                "answer": "Yes. PEMF therapy has been used since the 1970s and is backed by NASA and clinical research. The VIBE is an FDA-registered general wellness device.",
-                "is_active": True,
-                "order": 1,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            },
-            {
-                "id": "faq2",
-                "question": "How often should I use it?",
-                "answer": "Start with 30 minutes a day and build gradually. Most people feel results within the first week. You can use it as often as you like, you can't overdose on frequencies.",
-                "is_active": True,
-                "order": 2,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            },
-            {
-                "id": "faq3",
-                "question": "Can anyone use it?",
-                "answer": "Almost everyone. The only exceptions are people with pacemakers or during pregnancy. If you have medical concerns, consult your doctor.",
-                "is_active": True,
-                "order": 3,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            },
-            {
-                "id": "faq4",
-                "question": "What if it doesn't work for me?",
-                "answer": "We offer a 30-day money-back guarantee. If you don't see improvements, return it for a full refund. No questions asked.",
-                "is_active": True,
-                "order": 4,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            }
-        ]
-        await db.faqs.insert_many(faqs)
-        print(f"✓ Added {len(faqs)} FAQs")
+    # Clear existing FAQs and add new ones
+    await db.faqs.delete_many({})
+    faqs = [
+        {
+            "id": "faq1",
+            "question": "Is PEMF safe?",
+            "answer": "Yes. PEMF therapy has been used since the 1970s and is backed by NASA and clinical research. The VIBE is an FDA-registered general wellness device.",
+            "is_active": True,
+            "order": 1,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "faq2",
+            "question": "How often should I use it?",
+            "answer": "Start with 30 minutes a day and build gradually. Most people feel results within the first week. You can use it as often as you like, you can't overdose on frequencies.",
+            "is_active": True,
+            "order": 2,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "faq3",
+            "question": "Can anyone use it?",
+            "answer": "Almost everyone. The only exceptions are people with pacemakers or during pregnancy. If you have medical concerns, consult your doctor.",
+            "is_active": True,
+            "order": 3,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "faq4",
+            "question": "How is this different from my phone or WiFi signals?",
+            "answer": "Your phone emits high-frequency EMFs that can be harmful. The VIBE emits ultra-low frequencies similar to the Earth's natural magnetic field, 100,000 times lower than a cell phone. It's not only safe, it's healing.",
+            "is_active": True,
+            "order": 4,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "faq5",
+            "question": "Where do I buy it?",
+            "answer": "Right here, through Smita's official affiliate link. This ensures you receive full support and guidance after your purchase.",
+            "is_active": True,
+            "order": 5,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "faq6",
+            "question": "What if it doesn't work for me?",
+            "answer": "We offer a 30-day money-back guarantee. If you don't see improvements, return it for a full refund. No questions asked.",
+            "is_active": True,
+            "order": 6,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+    ]
+    await db.faqs.insert_many(faqs)
+    print(f"✓ Added {len(faqs)} FAQs")
     
     client.close()
     print("✓ Database initialization complete")
