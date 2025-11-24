@@ -86,12 +86,12 @@ export default function LandingPage() {
     }
   };
 
-  const handleGetStarted = (productId) => {
-    if (!user) {
-      navigate('/auth', { state: { redirectTo: '/checkout', productId } });
-    } else {
-      navigate('/checkout', { state: { productId } });
-    }
+  const handleGetStarted = () => {
+    window.open('https://resona.health/shop/?ap_id=smitashares', '_blank');
+  };
+
+  const handleResearch = () => {
+    window.open('https://resona.health/research/?ap_id=smitashares', '_blank');
   };
 
   const mainProduct = products[0];
