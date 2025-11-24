@@ -666,6 +666,106 @@ async def get_sitemap_xml():
 </urlset>'''
     return Response(content=sitemap, media_type="application/xml")
 
+# ==================== Blog Routes ====================
+
+@api_router.get("/blog", response_model=List[BlogPost])
+async def get_blog_posts(published_only: bool = True):
+    query = {"is_published": True} if published_only else {}
+    posts = await db.blog_posts.find(query, {"_id": 0}).sort("published_date", -1).to_list(100)
+    for post in posts:
+        if isinstance(post.get('created_at'), str):
+            post['created_at'] = datetime.fromisoformat(post['created_at'])
+        if isinstance(post.get('updated_at'), str):
+            post['updated_at'] = datetime.fromisoformat(post['updated_at'])
+        if post.get('published_date') and isinstance(post['published_date'], str):
+            post['published_date'] = datetime.fromisoformat(post['published_date'])
+    return posts
+
+@api_router.get("/blog/{slug}", response_model=BlogPost)
+async def get_blog_post_by_slug(slug: str):
+    post = await db.blog_posts.find_one({"slug": slug, "is_published": True}, {"_id": 0})
+    if not post:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    
+    if isinstance(post.get('created_at'), str):
+        post['created_at'] = datetime.fromisoformat(post['created_at'])
+    if isinstance(post.get('updated_at'), str):
+        post['updated_at'] = datetime.fromisoformat(post['updated_at'])
+    if post.get('published_date') and isinstance(post['published_date'], str):
+        post['published_date'] = datetime.fromisoformat(post['published_date'])
+    
+    return post
+
+@api_router.post("/blog", response_model=BlogPost)
+async def create_blog_post(post_input: BlogPostCreate, admin: Dict[str, Any] = Depends(get_superadmin_user)):
+    # Check if slug already exists
+    existing = await db.blog_posts.find_one({"slug": post_input.slug}, {"_id": 0})
+    if existing:
+        raise HTTPException(status_code=400, detail="Slug already exists")
+    
+    post = BlogPost(**post_input.model_dump())
+    if post_input.is_published and not post.published_date:
+        post.published_date = datetime.now(timezone.utc)
+    
+    post_doc = post.model_dump()
+    post_doc['created_at'] = post_doc['created_at'].isoformat()
+    post_doc['updated_at'] = post_doc['updated_at'].isoformat()
+    if post_doc.get('published_date'):
+        post_doc['published_date'] = post_doc['published_date'].isoformat()
+    
+    await db.blog_posts.insert_one(post_doc)
+    return post
+
+@api_router.put("/blog/{post_id}", response_model=BlogPost)
+async def update_blog_post(post_id: str, post_input: BlogPostUpdate, admin: Dict[str, Any] = Depends(get_superadmin_user)):
+    existing = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    
+    # Check slug uniqueness if being changed
+    if post_input.slug and post_input.slug != existing.get('slug'):
+        slug_exists = await db.blog_posts.find_one({"slug": post_input.slug}, {"_id": 0})
+        if slug_exists:
+            raise HTTPException(status_code=400, detail="Slug already exists")
+    
+    update_data = {k: v for k, v in post_input.model_dump().items() if v is not None}
+    update_data['updated_at'] = datetime.now(timezone.utc).isoformat()
+    
+    # Set published_date when publishing for the first time
+    if post_input.is_published and not existing.get('published_date'):
+        update_data['published_date'] = datetime.now(timezone.utc).isoformat()
+    
+    await db.blog_posts.update_one({"id": post_id}, {"$set": update_data})
+    
+    updated = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    if isinstance(updated.get('created_at'), str):
+        updated['created_at'] = datetime.fromisoformat(updated['created_at'])
+    if isinstance(updated.get('updated_at'), str):
+        updated['updated_at'] = datetime.fromisoformat(updated['updated_at'])
+    if updated.get('published_date') and isinstance(updated['published_date'], str):
+        updated['published_date'] = datetime.fromisoformat(updated['published_date'])
+    
+    return updated
+
+@api_router.delete("/blog/{post_id}")
+async def delete_blog_post(post_id: str, admin: Dict[str, Any] = Depends(get_superadmin_user)):
+    result = await db.blog_posts.delete_one({"id": post_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    return {"message": "Blog post deleted"}
+
+@api_router.get("/admin/blog", response_model=List[BlogPost])
+async def get_all_blog_posts_admin(admin: Dict[str, Any] = Depends(get_superadmin_user)):
+    posts = await db.blog_posts.find({}, {"_id": 0}).sort("created_at", -1).to_list(100)
+    for post in posts:
+        if isinstance(post.get('created_at'), str):
+            post['created_at'] = datetime.fromisoformat(post['created_at'])
+        if isinstance(post.get('updated_at'), str):
+            post['updated_at'] = datetime.fromisoformat(post['updated_at'])
+        if post.get('published_date') and isinstance(post['published_date'], str):
+            post['published_date'] = datetime.fromisoformat(post['published_date'])
+    return posts
+
 # ==================== Admin Stats ====================
 
 @api_router.get("/admin/stats")
