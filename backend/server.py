@@ -368,7 +368,7 @@ async def get_products():
         if isinstance(p_copy.get('created_at'), datetime):
             p_copy['created_at'] = p_copy['created_at'].isoformat()
         cache_data.append(p_copy)
-    await redis_client.setex("products:all", 300, json.dumps(cache_data))
+    await safe_redis_setex("products:all", 300, json.dumps(cache_data))
     
     return products
 
