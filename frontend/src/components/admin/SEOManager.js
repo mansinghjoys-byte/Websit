@@ -219,7 +219,7 @@ export default function SEOManager() {
                   value={seoData.sitemap_xml}
                   onChange={(e) => setSeoData({...seoData, sitemap_xml: e.target.value})}
                   rows={12}
-                  placeholder="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset>...</urlset>"
+                  placeholder={'<?xml version="1.0" encoding="UTF-8"?>\n<urlset>...</urlset>'}
                   data-testid="sitemap-xml-input"
                   className="font-mono text-sm"
                 />
