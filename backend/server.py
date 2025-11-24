@@ -420,7 +420,7 @@ async def delete_product(product_id: str, admin: Dict[str, Any] = Depends(get_su
         raise HTTPException(status_code=404, detail="Product not found")
     
     # Invalidate cache
-    await redis_client.delete("products:all")
+    await safe_redis_delete("products:all")
     
     return {"message": "Product deleted"}
 
