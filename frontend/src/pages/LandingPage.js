@@ -732,6 +732,7 @@ export default function LandingPage() {
                 <li><a href="#how-it-works" className="hover:text-[#16a4a4] transition-colors">How It Works</a></li>
                 <li><a href="#testimonials" className="hover:text-[#16a4a4] transition-colors">Reviews</a></li>
                 <li><a href="#faq" className="hover:text-[#16a4a4] transition-colors">FAQ</a></li>
+                <li><a href="/blog" className="hover:text-[#16a4a4] transition-colors">Blog</a></li>
               </ul>
             </div>
 
@@ -740,8 +741,8 @@ export default function LandingPage() {
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><a href="https://resona.health/research/?ap_id=smitashares" target="_blank" rel="noopener noreferrer" className="hover:text-[#16a4a4] transition-colors">Research Library</a></li>
                 <li><a href="https://resona.health/faqs/?ap_id=smitashares" target="_blank" rel="noopener noreferrer" className="hover:text-[#16a4a4] transition-colors">Full FAQs</a></li>
-                <li><a href={`${API}/robots.txt`} className="hover:text-[#16a4a4] transition-colors">Robots.txt</a></li>
-                <li><a href={`${API}/sitemap.xml`} className="hover:text-[#16a4a4] transition-colors">Sitemap</a></li>
+                <li><a href="/privacy-policy" className="hover:text-[#16a4a4] transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms-of-service" className="hover:text-[#16a4a4] transition-colors">Terms of Service</a></li>
               </ul>
             </div>
 
