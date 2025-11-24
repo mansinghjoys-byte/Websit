@@ -624,7 +624,7 @@ export default function LandingPage() {
                 </div>
 
                 <Button
-                  onClick={() => handleGetStarted(mainProduct?.id)}
+                  onClick={handleGetStarted}
                   className="btn-primary w-full sm:w-auto"
                   size="lg"
                   data-testid="get-vibe-guidance-btn"
