@@ -515,13 +515,24 @@ export default function LandingPage() {
 
             <div className="text-center space-y-4">
               <Button
-                onClick={() => handleGetStarted(mainProduct?.id)}
+                onClick={handleResearch}
                 className="btn-primary"
                 size="lg"
-                data-testid="try-risk-free-btn-3"
+                data-testid="explore-protocols-btn"
               >
-                Try It Risk-Free for 30 Days →
+                Explore All 60 Protocols →
               </Button>
+              <div>
+                <Button
+                  onClick={handleResearch}
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full border-2 border-[#16a4a4] text-[#16a4a4] hover:bg-[#16a4a4] hover:text-white"
+                  data-testid="try-risk-free-btn-3"
+                >
+                  Try It Risk-Free for 30 Days →
+                </Button>
+              </div>
             </div>
           </div>
         </div>
