@@ -121,6 +121,7 @@ export default function LandingPage() {
               <a href="#how-it-works" className="text-gray-700 hover:text-[#16a4a4] transition-colors font-medium">How It Works</a>
               <a href="#testimonials" className="text-gray-700 hover:text-[#16a4a4] transition-colors font-medium">Reviews</a>
               <a href="#faq" className="text-gray-700 hover:text-[#16a4a4] transition-colors font-medium">FAQ</a>
+              <a href="/blog" className="text-gray-700 hover:text-[#16a4a4] transition-colors font-medium">Blog</a>
             </nav>
 
             <div className="flex items-center space-x-4">
