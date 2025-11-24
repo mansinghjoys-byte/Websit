@@ -187,6 +187,47 @@ class SEOSettingsUpdate(BaseModel):
     robots_txt: Optional[str] = None
     sitemap_xml: Optional[str] = None
 
+class BlogPost(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    slug: str
+    excerpt: str
+    content: str
+    featured_image: str = ""
+    author: str = "Smita"
+    tags: List[str] = []
+    is_published: bool = False
+    meta_title: str = ""
+    meta_description: str = ""
+    published_date: Optional[datetime] = None
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BlogPostCreate(BaseModel):
+    title: str
+    slug: str
+    excerpt: str
+    content: str
+    featured_image: str = ""
+    author: str = "Smita"
+    tags: List[str] = []
+    is_published: bool = False
+    meta_title: str = ""
+    meta_description: str = ""
+
+class BlogPostUpdate(BaseModel):
+    title: Optional[str] = None
+    slug: Optional[str] = None
+    excerpt: Optional[str] = None
+    content: Optional[str] = None
+    featured_image: Optional[str] = None
+    author: Optional[str] = None
+    tags: Optional[List[str]] = None
+    is_published: Optional[bool] = None
+    meta_title: Optional[str] = None
+    meta_description: Optional[str] = None
+
 class PaymentIntentCreate(BaseModel):
     product_id: str
     quantity: int
