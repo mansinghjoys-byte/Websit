@@ -125,6 +125,15 @@ export default function LandingPage() {
             </nav>
 
             <div className="flex items-center space-x-4">
+              <Button
+                onClick={handleGetStarted}
+                className="btn-primary hidden sm:flex"
+                size="sm"
+                data-testid="header-shop-btn"
+              >
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Shop Now
+              </Button>
               {user ? (
                 <Button
                   onClick={() => navigate(user.role === 'superadmin' ? '/admin' : '/dashboard')}
