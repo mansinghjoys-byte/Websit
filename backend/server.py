@@ -658,7 +658,7 @@ async def update_seo_settings(seo_input: SEOSettingsUpdate, admin: Dict[str, Any
         settings['updated_at'] = datetime.fromisoformat(settings['updated_at'])
     
     # Invalidate cache
-    await redis_client.delete("seo:settings")
+    await safe_redis_delete("seo:settings")
     
     return settings
 
