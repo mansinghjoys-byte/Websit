@@ -241,108 +241,72 @@ export default function LandingPage() {
       <section className="py-16 bg-white" data-testid="as-seen-on-section">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <div className="inline-block bg-gray-900 text-white px-12 py-4 rounded-2xl">
-              <h3 className="text-2xl font-bold uppercase tracking-wider">
+            <div className="inline-block bg-gray-900 text-white px-16 py-6 rounded-3xl shadow-2xl">
+              <h3 className="text-3xl font-bold uppercase tracking-[0.3em]" style={{ fontFamily: 'Arial, sans-serif', fontStretch: 'condensed' }}>
                 AS SEEN ON
               </h3>
             </div>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-8 px-4">
             {[
               { 
                 name: 'Benzinga',
-                logo: (
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded mr-2"></div>
-                    <span className="font-bold text-gray-800 text-lg">BENZINGA</span>
-                  </div>
-                )
+                logo: 'https://logo.clearbit.com/benzinga.com',
+                alt: 'Benzinga Logo'
               },
               {
                 name: 'NBC',
-                logo: (
-                  <div className="flex flex-col items-center">
-                    <div className="flex gap-1 mb-1">
-                      {['#FDB913', '#E63888', '#9B59B6', '#3498DB', '#2ECC71', '#F39C12'].map((color, i) => (
-                        <div key={i} className="w-2 h-6 rounded-full" style={{ backgroundColor: color }}></div>
-                      ))}
-                    </div>
-                    <span className="font-bold text-gray-800 text-xl">NBC</span>
-                  </div>
-                )
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NBC_logo.svg/320px-NBC_logo.svg.png',
+                alt: 'NBC Logo'
               },
               {
                 name: 'ABC',
-                logo: (
-                  <div className="flex items-center justify-center">
-                    <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center">
-                      <span className="font-bold text-white text-sm">abc</span>
-                    </div>
-                  </div>
-                )
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ABC-2021-LOGO.svg/320px-ABC-2021-LOGO.svg.png',
+                alt: 'ABC Logo'
               },
               {
                 name: 'CBS',
-                logo: (
-                  <div className="flex items-center justify-center">
-                    <div className="w-12 h-12 relative">
-                      <div className="absolute inset-0 bg-gray-900 rounded-full"></div>
-                      <svg viewBox="0 0 50 50" className="relative z-10" fill="white">
-                        <circle cx="25" cy="25" r="20" fill="none" stroke="white" strokeWidth="2"/>
-                        <circle cx="15" cy="25" r="6" fill="white"/>
-                        <circle cx="35" cy="25" r="6" fill="white"/>
-                      </svg>
-                    </div>
-                    <span className="font-bold text-gray-800 text-xl ml-1">CBS</span>
-                  </div>
-                )
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/CBS_logo_%282020%29.svg/320px-CBS_logo_%282020%29.svg.png',
+                alt: 'CBS Logo'
               },
               {
-                name: 'Fox News',
-                logo: (
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center mb-1">
-                      <div className="text-3xl font-bold italic text-gray-800">FOX</div>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-600 tracking-wider">NEWS</span>
-                  </div>
-                )
+                name: 'FOX NEWS',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fox_News_Channel_logo.svg/320px-Fox_News_Channel_logo.svg.png',
+                alt: 'FOX NEWS Logo'
               },
               {
                 name: 'USA Today',
-                logo: (
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-1 mb-1">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white font-bold text-xs">USA</span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-bold text-gray-800 tracking-wide">TODAY</span>
-                  </div>
-                )
+                logo: 'https://logo.clearbit.com/usatoday.com',
+                alt: 'USA Today Logo'
               },
               {
                 name: 'Digital Journal',
-                logo: (
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-red-600 rounded mr-2"></div>
-                    <div className="flex flex-col">
-                      <span className="font-bold text-gray-800 text-sm leading-tight">DIGITAL</span>
-                      <span className="font-bold text-gray-800 text-sm leading-tight">JOURNAL</span>
-                    </div>
-                  </div>
-                )
+                logo: 'https://logo.clearbit.com/digitaljournal.com',
+                alt: 'Digital Journal Logo'
               }
             ].map((outlet, idx) => (
               <div
                 key={idx}
-                className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="relative w-36 h-28 lg:w-40 lg:h-32 bg-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 p-6"
                 style={{
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.06)'
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08)',
+                  borderRadius: '50%'
                 }}
               >
-                {outlet.logo}
+                <img 
+                  src={outlet.logo} 
+                  alt={outlet.alt}
+                  className="max-w-full max-h-full object-contain"
+                  onError={(e) => {
+                    // Fallback to text if image fails to load
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'block';
+                  }}
+                />
+                <div className="hidden text-center">
+                  <span className="font-bold text-gray-800 text-sm">{outlet.name}</span>
+                </div>
               </div>
             ))}
           </div>
