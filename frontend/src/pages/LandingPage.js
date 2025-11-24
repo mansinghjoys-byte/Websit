@@ -569,6 +569,18 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
+
+            <div className="text-center mt-8">
+              <Button
+                onClick={handleResearch}
+                variant="outline"
+                size="lg"
+                className="rounded-full border-2 border-[#16a4a4] text-[#16a4a4] hover:bg-[#16a4a4] hover:text-white"
+                data-testid="see-research-btn"
+              >
+                See the Research →
+              </Button>
+            </div>
           </div>
         </div>
       </section>
