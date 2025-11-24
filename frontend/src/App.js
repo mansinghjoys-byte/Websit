@@ -9,6 +9,12 @@ import AuthPage from './pages/AuthPage';
 import CheckoutPage from './pages/CheckoutPage';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import ThankYouPage from './pages/ThankYouPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Auth Context
 import { AuthProvider, useAuth } from './context/AuthContext';
