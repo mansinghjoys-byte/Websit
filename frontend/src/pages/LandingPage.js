@@ -367,15 +367,26 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <Button
-              onClick={() => handleGetStarted(mainProduct?.id)}
-              className="btn-primary mt-8"
-              size="lg"
-              data-testid="try-risk-free-btn-1"
-            >
-              Try It Risk-Free for 30 Days →
-            </Button>
-            <p className="text-sm text-gray-600">Free Worldwide Shipping</p>
+            <div className="space-y-4">
+              <Button
+                onClick={handleResearch}
+                className="btn-primary mt-8"
+                size="lg"
+                data-testid="try-risk-free-btn-1"
+              >
+                Try It Risk-Free for 30 Days →
+              </Button>
+              <p className="text-sm text-gray-600">Free Worldwide Shipping</p>
+              <div className="pt-4">
+                <Button
+                  onClick={handleResearch}
+                  variant="link"
+                  className="text-[#16a4a4] text-lg font-semibold hover:underline"
+                >
+                  → See How Cellular Optimization Works
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
