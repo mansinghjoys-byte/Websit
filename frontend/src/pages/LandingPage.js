@@ -238,81 +238,85 @@ export default function LandingPage() {
       </section>
 
       {/* As Seen On */}
-      <section className="py-16 bg-gray-50" data-testid="as-seen-on-section">
+      <section className="py-20 bg-gray-50" data-testid="as-seen-on-section">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <div className="inline-block bg-gray-900 text-white px-20 py-8 rounded-3xl shadow-2xl">
-              <h3 className="text-4xl font-bold uppercase tracking-[0.4em] leading-none" style={{ fontFamily: 'Arial Black, sans-serif', letterSpacing: '0.4em' }}>
+          <div className="relative flex flex-col items-center">
+            {/* Black Banner */}
+            <div className="relative z-10 bg-black text-white px-32 py-10 rounded-3xl shadow-2xl">
+              <h3 className="text-5xl font-bold uppercase tracking-[0.5em] leading-none whitespace-nowrap" style={{ fontFamily: 'Arial Black, sans-serif' }}>
                 AS SEEN ON
               </h3>
             </div>
-          </div>
-          
-          <div className="flex flex-wrap items-center justify-center gap-5 lg:gap-6 px-4">
-            {[
-              { 
-                name: 'BENZINGA',
-                logo: 'https://logo.clearbit.com/benzinga.com',
-                alt: 'Benzinga Logo'
-              },
-              {
-                name: 'NBC',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NBC_logo.svg/320px-NBC_logo.svg.png',
-                alt: 'NBC Logo'
-              },
-              {
-                name: 'abc',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ABC-2021-LOGO.svg/320px-ABC-2021-LOGO.svg.png',
-                alt: 'ABC Logo'
-              },
-              {
-                name: 'CBS',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/CBS_logo_%282020%29.svg/320px-CBS_logo_%282020%29.svg.png',
-                alt: 'CBS Logo'
-              },
-              {
-                name: 'FOX NEWS',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fox_News_Channel_logo.svg/320px-Fox_News_Channel_logo.svg.png',
-                alt: 'FOX NEWS Logo'
-              },
-              {
-                name: 'USA TODAY',
-                logo: 'https://logo.clearbit.com/usatoday.com',
-                alt: 'USA Today Logo'
-              },
-              {
-                name: 'DIGITAL JOURNAL',
-                logo: 'https://logo.clearbit.com/digitaljournal.com',
-                alt: 'Digital Journal Logo'
-              }
-            ].map((outlet, idx) => (
-              <div
-                key={idx}
-                className="relative bg-white flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 px-8 py-6"
-                style={{
-                  width: '180px',
-                  height: '140px',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.12)',
-                  borderRadius: '50%',
-                  transform: 'scale(1)',
-                }}
-              >
-                <img 
-                  src={outlet.logo} 
-                  alt={outlet.alt}
-                  className="max-w-full max-h-full object-contain"
-                  style={{ maxHeight: '80px', maxWidth: '140px' }}
-                  onError={(e) => {
-                    // Fallback to text if image fails to load
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-                <div className="hidden items-center justify-center text-center">
-                  <span className="font-bold text-gray-800 text-base">{outlet.name}</span>
-                </div>
+            
+            {/* Logos Container - Overlapping the banner */}
+            <div className="relative -mt-16 flex items-center justify-center" style={{ marginTop: '-60px' }}>
+              <div className="flex items-center justify-center">
+                {[
+                  { 
+                    name: 'BENZINGA',
+                    logo: 'https://logo.clearbit.com/benzinga.com',
+                    alt: 'Benzinga Logo'
+                  },
+                  {
+                    name: 'NBC',
+                    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NBC_logo.svg/320px-NBC_logo.svg.png',
+                    alt: 'NBC Logo'
+                  },
+                  {
+                    name: 'abc',
+                    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ABC-2021-LOGO.svg/320px-ABC-2021-LOGO.svg.png',
+                    alt: 'ABC Logo'
+                  },
+                  {
+                    name: 'CBS',
+                    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/CBS_logo_%282020%29.svg/320px-CBS_logo_%282020%29.svg.png',
+                    alt: 'CBS Logo'
+                  },
+                  {
+                    name: 'FOX NEWS',
+                    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fox_News_Channel_logo.svg/320px-Fox_News_Channel_logo.svg.png',
+                    alt: 'FOX NEWS Logo'
+                  },
+                  {
+                    name: 'USA TODAY',
+                    logo: 'https://logo.clearbit.com/usatoday.com',
+                    alt: 'USA Today Logo'
+                  },
+                  {
+                    name: 'DIGITAL JOURNAL',
+                    logo: 'https://logo.clearbit.com/digitaljournal.com',
+                    alt: 'Digital Journal Logo'
+                  }
+                ].map((outlet, idx) => (
+                  <div
+                    key={idx}
+                    className="relative bg-white flex items-center justify-center transition-all duration-300 hover:scale-105"
+                    style={{
+                      width: '160px',
+                      height: '160px',
+                      borderRadius: '50%',
+                      boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 10px 25px rgba(0, 0, 0, 0.15)',
+                      marginLeft: idx === 0 ? '0' : '-20px',
+                      zIndex: 7 - idx,
+                    }}
+                  >
+                    <img 
+                      src={outlet.logo} 
+                      alt={outlet.alt}
+                      className="max-w-full max-h-full object-contain p-6"
+                      style={{ maxHeight: '100px', maxWidth: '120px' }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="hidden items-center justify-center text-center w-full">
+                      <span className="font-bold text-gray-800 text-sm">{outlet.name}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
