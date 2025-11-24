@@ -605,7 +605,7 @@ async def delete_faq(faq_id: str, admin: Dict[str, Any] = Depends(get_superadmin
 @api_router.get("/seo")
 async def get_seo_settings():
     # Try cache first
-    cached = await redis_client.get("seo:settings")
+    cached = await safe_redis_get("seo:settings")
     if cached:
         settings = json.loads(cached)
         if isinstance(settings.get('updated_at'), str):
