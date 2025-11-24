@@ -292,19 +292,19 @@ export default function LandingPage() {
                     key={idx}
                     className="relative bg-white flex items-center justify-center transition-all duration-300 hover:scale-105"
                     style={{
-                      width: '160px',
-                      height: '160px',
+                      width: '120px',
+                      height: '120px',
                       borderRadius: '50%',
                       boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 10px 25px rgba(0, 0, 0, 0.15)',
-                      marginLeft: idx === 0 ? '0' : '-20px',
+                      marginLeft: idx === 0 ? '0' : '-15px',
                       zIndex: 20 + idx,
                     }}
                   >
                     <img 
                       src={outlet.logo} 
                       alt={outlet.alt}
-                      className="max-w-full max-h-full object-contain p-6"
-                      style={{ maxHeight: '100px', maxWidth: '120px' }}
+                      className="max-w-full max-h-full object-contain p-3"
+                      style={{ maxHeight: '85px', maxWidth: '95px' }}
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.nextSibling.style.display = 'flex';
