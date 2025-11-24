@@ -671,7 +671,7 @@ export default function LandingPage() {
 
             <div className="text-center">
               <Button
-                onClick={() => handleGetStarted(mainProduct?.id)}
+                onClick={handleGetStarted}
                 className="btn-primary"
                 size="lg"
                 data-testid="join-users-btn"
