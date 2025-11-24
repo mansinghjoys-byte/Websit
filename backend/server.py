@@ -390,7 +390,7 @@ async def create_product(product_input: ProductCreate, admin: Dict[str, Any] = D
     await db.products.insert_one(product_doc)
     
     # Invalidate cache
-    await redis_client.delete("products:all")
+    await safe_redis_delete("products:all")
     
     return product
 
