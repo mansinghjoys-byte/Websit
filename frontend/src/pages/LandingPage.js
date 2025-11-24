@@ -781,6 +781,53 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Stop Settling Section */}
+      <section className="section bg-gradient-to-br from-[#f0fffe] to-white" data-testid="stop-settling-section">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
+              Stop Settling. Start Healing.
+            </h2>
+            
+            <p className="text-xl text-gray-700 leading-relaxed">
+              You've tried pills. You've tried diets. You've tried "pushing through." 
+              What if the answer isn't about doing more but about giving your body what it actually needs?
+            </p>
+
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">The VIBE is designed for people who want:</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-left">
+                {[
+                  'Energy without stimulants',
+                  'Sleep without pills',
+                  'Calm without medication',
+                  'Healing without side effects'
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <Check className="w-6 h-6 text-[#16a4a4] flex-shrink-0" />
+                    <p className="text-lg text-gray-700 font-medium">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-2xl font-bold text-[#16a4a4] italic">
+              It's time to feel like yourself again.
+            </p>
+
+            <Button
+              onClick={handleGetStarted}
+              className="btn-primary"
+              size="lg"
+              data-testid="start-trial-btn"
+            >
+              <ShoppingCart className="mr-2 h-5 w-5" />
+              Start Your 30-Day Trial Now →
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Community Section */}
       <section className="section bg-gradient-to-br from-[#16a4a4] to-[#128a8a] text-white" data-testid="community-section">
         <div className="container-custom">
