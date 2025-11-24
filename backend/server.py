@@ -885,4 +885,7 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_event():
     client.close()
-    await redis_client.close()
+    try:
+        await redis_client.close()
+    except Exception as e:
+        logging.warning(f"Redis close failed: {e}")
