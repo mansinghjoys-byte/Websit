@@ -238,14 +238,112 @@ export default function LandingPage() {
       </section>
 
       {/* As Seen On */}
-      <section className="py-12 bg-gray-900" data-testid="as-seen-on-section">
+      <section className="py-16 bg-white" data-testid="as-seen-on-section">
         <div className="container-custom">
-          <h3 className="text-center text-white text-sm font-semibold uppercase tracking-wider mb-8">
-            As Featured In
-          </h3>
-          <div className="flex flex-wrap items-center justify-center gap-12 opacity-70">
-            {['NBC', 'CBS', 'FOX NEWS', 'USA TODAY', 'ABC'].map((brand) => (
-              <span key={brand} className="text-white font-bold text-2xl">{brand}</span>
+          <div className="text-center mb-12">
+            <div className="inline-block bg-gray-900 text-white px-12 py-4 rounded-2xl">
+              <h3 className="text-2xl font-bold uppercase tracking-wider">
+                AS SEEN ON
+              </h3>
+            </div>
+          </div>
+          
+          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+            {[
+              { 
+                name: 'Benzinga',
+                logo: (
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 rounded mr-2"></div>
+                    <span className="font-bold text-gray-800 text-lg">BENZINGA</span>
+                  </div>
+                )
+              },
+              {
+                name: 'NBC',
+                logo: (
+                  <div className="flex flex-col items-center">
+                    <div className="flex gap-1 mb-1">
+                      {['#FDB913', '#E63888', '#9B59B6', '#3498DB', '#2ECC71', '#F39C12'].map((color, i) => (
+                        <div key={i} className="w-2 h-6 rounded-full" style={{ backgroundColor: color }}></div>
+                      ))}
+                    </div>
+                    <span className="font-bold text-gray-800 text-xl">NBC</span>
+                  </div>
+                )
+              },
+              {
+                name: 'ABC',
+                logo: (
+                  <div className="flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center">
+                      <span className="font-bold text-white text-sm">abc</span>
+                    </div>
+                  </div>
+                )
+              },
+              {
+                name: 'CBS',
+                logo: (
+                  <div className="flex items-center justify-center">
+                    <div className="w-12 h-12 relative">
+                      <div className="absolute inset-0 bg-gray-900 rounded-full"></div>
+                      <svg viewBox="0 0 50 50" className="relative z-10" fill="white">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="white" strokeWidth="2"/>
+                        <circle cx="15" cy="25" r="6" fill="white"/>
+                        <circle cx="35" cy="25" r="6" fill="white"/>
+                      </svg>
+                    </div>
+                    <span className="font-bold text-gray-800 text-xl ml-1">CBS</span>
+                  </div>
+                )
+              },
+              {
+                name: 'Fox News',
+                logo: (
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center mb-1">
+                      <div className="text-3xl font-bold italic text-gray-800">FOX</div>
+                    </div>
+                    <span className="text-xs font-semibold text-gray-600 tracking-wider">NEWS</span>
+                  </div>
+                )
+              },
+              {
+                name: 'USA Today',
+                logo: (
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-1 mb-1">
+                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-xs">USA</span>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-gray-800 tracking-wide">TODAY</span>
+                  </div>
+                )
+              },
+              {
+                name: 'Digital Journal',
+                logo: (
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-red-600 rounded mr-2"></div>
+                    <div className="flex flex-col">
+                      <span className="font-bold text-gray-800 text-sm leading-tight">DIGITAL</span>
+                      <span className="font-bold text-gray-800 text-sm leading-tight">JOURNAL</span>
+                    </div>
+                  </div>
+                )
+              }
+            ].map((outlet, idx) => (
+              <div
+                key={idx}
+                className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+                style={{
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.06)'
+                }}
+              >
+                {outlet.logo}
+              </div>
             ))}
           </div>
         </div>
