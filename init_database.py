@@ -11,43 +11,52 @@ async def init_data():
     client = AsyncIOMotorClient(mongo_url)
     db = client[db_name]
     
-    # Add initial testimonials
-    testimonials_count = await db.testimonials.count_documents({})
-    if testimonials_count == 0:
-        testimonials = [
-            {
-                "id": "test1",
-                "name": "Ankita",
-                "location": "India",
-                "text": "I was struggling with acne and inflammation, and after using the VIBE device, I saw a visible reduction in just 20 minutes. The redness calmed down, and I felt a sense of lightness I hadn't in days.",
-                "rating": 5,
-                "is_active": True,
-                "order": 1,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            },
-            {
-                "id": "test2",
-                "name": "FCG",
-                "location": "USA",
-                "text": "I've been running the protocols for lower back pain and neck pain, and the results have been really good. I felt a change right away and it relieved my symptoms, much to my amazement.",
-                "rating": 5,
-                "is_active": True,
-                "order": 2,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            },
-            {
-                "id": "test3",
-                "name": "Real User",
-                "location": "Canada",
-                "text": "I've been using it for about a month. I've noticed a pretty substantial difference in my quality of sleep, being able to fall asleep and stay asleep without melatonin. My migraines have gotten a lot less severe.",
-                "rating": 5,
-                "is_active": True,
-                "order": 3,
-                "created_at": datetime.now(timezone.utc).isoformat()
-            }
-        ]
-        await db.testimonials.insert_many(testimonials)
-        print(f"✓ Added {len(testimonials)} testimonials")
+    # Clear existing testimonials and add new ones
+    await db.testimonials.delete_many({})
+    testimonials = [
+        {
+            "id": "test1",
+            "name": "Ankita",
+            "location": "India",
+            "text": "I was struggling with acne and inflammation, and after using the VIBE device, I saw a visible reduction in just 20 minutes. The redness calmed down, and I felt a sense of lightness I hadn't in days. Later, I tried it for anxiety and within minutes, I could breathe more easily, my heart rate slowed, and I felt calm and balanced again. The VIBE has become my go-to for both physical and emotional well-being.",
+            "rating": 5,
+            "is_active": True,
+            "order": 1,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "test2",
+            "name": "FCG",
+            "location": "",
+            "text": "I've been running the protocols for lower back pain and neck pain, and the results have been really good. I felt a change right away and it relieved my symptoms, much to my amazement.",
+            "rating": 5,
+            "is_active": True,
+            "order": 2,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "test3",
+            "name": "Real User",
+            "location": "",
+            "text": "I've been using it for about a month. I've noticed a pretty substantial difference in my quality of sleep, being able to fall asleep and stay asleep without melatonin. My migraines have gotten a lot less severe and a lot less frequent. I have noticed a substantial decrease in my Tourette's tics, which is a great big win for me.",
+            "rating": 5,
+            "is_active": True,
+            "order": 3,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": "test4",
+            "name": "Verified User",
+            "location": "",
+            "text": "Shingles is very painful and the worst thing is it lasts 4-6 weeks. With the VIBE, the sores disappeared in 2 days.",
+            "rating": 5,
+            "is_active": True,
+            "order": 4,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+    ]
+    await db.testimonials.insert_many(testimonials)
+    print(f"✓ Added {len(testimonials)} testimonials")
     
     # Add initial FAQs
     faqs_count = await db.faqs.count_documents({})
