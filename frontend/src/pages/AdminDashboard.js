@@ -73,7 +73,7 @@ export default function AdminDashboard() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7 gap-2 h-auto bg-white p-2 rounded-lg shadow">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 gap-2 h-auto bg-white p-2 rounded-lg shadow">
             <TabsTrigger value="overview" className="flex items-center gap-2" data-testid="overview-tab">
               <BarChart3 className="w-4 h-4" />
               <span className="hidden sm:inline">Overview</span>
@@ -89,6 +89,10 @@ export default function AdminDashboard() {
             <TabsTrigger value="users" className="flex items-center gap-2" data-testid="users-tab">
               <Users className="w-4 h-4" />
               <span className="hidden sm:inline">Users</span>
+            </TabsTrigger>
+            <TabsTrigger value="blog" className="flex items-center gap-2" data-testid="blog-tab">
+              <MessageSquare className="w-4 h-4" />
+              <span className="hidden sm:inline">Blog</span>
             </TabsTrigger>
             <TabsTrigger value="testimonials" className="flex items-center gap-2" data-testid="testimonials-tab">
               <MessageSquare className="w-4 h-4" />
