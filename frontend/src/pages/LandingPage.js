@@ -238,20 +238,20 @@ export default function LandingPage() {
       </section>
 
       {/* As Seen On */}
-      <section className="py-16 bg-white" data-testid="as-seen-on-section">
+      <section className="py-16 bg-gray-50" data-testid="as-seen-on-section">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <div className="inline-block bg-gray-900 text-white px-16 py-6 rounded-3xl shadow-2xl">
-              <h3 className="text-3xl font-bold uppercase tracking-[0.3em]" style={{ fontFamily: 'Arial, sans-serif', fontStretch: 'condensed' }}>
+          <div className="text-center mb-16">
+            <div className="inline-block bg-gray-900 text-white px-20 py-8 rounded-3xl shadow-2xl">
+              <h3 className="text-4xl font-bold uppercase tracking-[0.4em] leading-none" style={{ fontFamily: 'Arial Black, sans-serif', letterSpacing: '0.4em' }}>
                 AS SEEN ON
               </h3>
             </div>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-8 px-4">
+          <div className="flex flex-wrap items-center justify-center gap-5 lg:gap-6 px-4">
             {[
               { 
-                name: 'Benzinga',
+                name: 'BENZINGA',
                 logo: 'https://logo.clearbit.com/benzinga.com',
                 alt: 'Benzinga Logo'
               },
@@ -261,7 +261,7 @@ export default function LandingPage() {
                 alt: 'NBC Logo'
               },
               {
-                name: 'ABC',
+                name: 'abc',
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ABC-2021-LOGO.svg/320px-ABC-2021-LOGO.svg.png',
                 alt: 'ABC Logo'
               },
@@ -276,36 +276,40 @@ export default function LandingPage() {
                 alt: 'FOX NEWS Logo'
               },
               {
-                name: 'USA Today',
+                name: 'USA TODAY',
                 logo: 'https://logo.clearbit.com/usatoday.com',
                 alt: 'USA Today Logo'
               },
               {
-                name: 'Digital Journal',
+                name: 'DIGITAL JOURNAL',
                 logo: 'https://logo.clearbit.com/digitaljournal.com',
                 alt: 'Digital Journal Logo'
               }
             ].map((outlet, idx) => (
               <div
                 key={idx}
-                className="relative w-36 h-28 lg:w-40 lg:h-32 bg-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 p-6"
+                className="relative bg-white flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 px-8 py-6"
                 style={{
-                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08)',
-                  borderRadius: '50%'
+                  width: '180px',
+                  height: '140px',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.12)',
+                  borderRadius: '50%',
+                  transform: 'scale(1)',
                 }}
               >
                 <img 
                   src={outlet.logo} 
                   alt={outlet.alt}
                   className="max-w-full max-h-full object-contain"
+                  style={{ maxHeight: '80px', maxWidth: '140px' }}
                   onError={(e) => {
                     // Fallback to text if image fails to load
                     e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
+                    e.target.nextSibling.style.display = 'flex';
                   }}
                 />
-                <div className="hidden text-center">
-                  <span className="font-bold text-gray-800 text-sm">{outlet.name}</span>
+                <div className="hidden items-center justify-center text-center">
+                  <span className="font-bold text-gray-800 text-base">{outlet.name}</span>
                 </div>
               </div>
             ))}
