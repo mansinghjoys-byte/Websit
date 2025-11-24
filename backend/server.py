@@ -27,6 +27,29 @@ db = client[os.environ['DB_NAME']]
 # Redis connection
 redis_client = redis.from_url(os.environ.get('REDIS_URL', 'redis://localhost:6379'), decode_responses=True)
 
+# Redis helper functions with error handling
+async def safe_redis_get(key: str) -> Optional[str]:
+    """Safely get from Redis, returns None if Redis is unavailable"""
+    try:
+        return await redis_client.get(key)
+    except Exception as e:
+        logging.warning(f"Redis get failed for key {key}: {e}")
+        return None
+
+async def safe_redis_setex(key: str, time: int, value: str):
+    """Safely set with expiration in Redis, silently fails if Redis is unavailable"""
+    try:
+        await redis_client.setex(key, time, value)
+    except Exception as e:
+        logging.warning(f"Redis setex failed for key {key}: {e}")
+
+async def safe_redis_delete(key: str):
+    """Safely delete from Redis, silently fails if Redis is unavailable"""
+    try:
+        await redis_client.delete(key)
+    except Exception as e:
+        logging.warning(f"Redis delete failed for key {key}: {e}")
+
 # Stripe configuration
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
 
