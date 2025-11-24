@@ -409,7 +409,7 @@ async def update_product(product_id: str, product_input: ProductUpdate, admin: D
         updated['created_at'] = datetime.fromisoformat(updated['created_at'])
     
     # Invalidate cache
-    await redis_client.delete("products:all")
+    await safe_redis_delete("products:all")
     
     return updated
 
