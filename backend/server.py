@@ -347,7 +347,7 @@ async def get_me(current_user: Dict[str, Any] = Depends(get_current_user)):
 @api_router.get("/products", response_model=List[Product])
 async def get_products():
     # Try cache first
-    cached = await redis_client.get("products:all")
+    cached = await safe_redis_get("products:all")
     if cached:
         products = json.loads(cached)
         for p in products:
