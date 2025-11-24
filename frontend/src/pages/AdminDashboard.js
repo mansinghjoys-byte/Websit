@@ -16,6 +16,7 @@ import UsersManager from '../components/admin/UsersManager';
 import TestimonialsManager from '../components/admin/TestimonialsManager';
 import FAQManager from '../components/admin/FAQManager';
 import SEOManager from '../components/admin/SEOManager';
+import BlogManager from '../components/admin/BlogManager';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
